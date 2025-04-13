@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookmark Manager - by Rishabh</title>
+  <style>
+    body {
+      background-color: #111;
+      color: rgb(0, 245, 229);
+      font-family: monospace;
+      font-size: 24px;
+      padding: 20px;
+      margin: 0;
+      height: 100%;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1 {
+      padding: 10px;
+      margin: 10px;
+      color: rgb(0, 255, 255);
+      text-align: center;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
+      font-weight: 700;
+      font-size: 2.8rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(45deg, #3498db, #8e44ad);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: gradientShift 3s ease-in-out infinite;
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    h2 {
+      color: #f39c12;
+      padding: 15px;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: 28px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 40px;
+      background: linear-gradient(135deg, #ff6347, #ff4500);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: textGlow 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes textGlow {
+      0% {
+        text-shadow: 0 0 10px rgba(255, 99, 71, 0.6), 0 0 20px rgba(255, 99, 71, 0.6);
+      }
+
+      100% {
+        text-shadow: 0 0 20px rgba(255, 99, 71, 0.9), 0 0 30px rgba(255, 99, 71, 0.9);
+      }
+    }
+
+    p {
+      color: violet;
+    }
+
+    a {
+      color: violet;
+      text-decoration: none;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: white;
+    }
+
+    a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+      animation: moveLine 2s linear infinite;
+    }
+
+    @keyframes moveLine {
+      0% {
+        background-position: 0 0;
+      }
+
+      100% {
+        background-position: 200% 0;
+      }
+    }
+
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: radial-gradient(circle, #0ff 1px, transparent 1px);
+      background-size: 30px 30px;
+      animation: moveParticles 10s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes moveParticles {
+      from {
+        background-position: 0 0;
+      }
+
+      to {
+        background-position: 100px 100px;
+      }
+    }
+
+    .typewriter-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+      padding: 20px 30px;
+      margin: 40px auto;
+      display: inline-block;
+      animation: pulseGlow 2s ease-in-out infinite, fadeIn 1s ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+      0%,
+      100% {
+        box-shadow: 0 0 12px #0ff, 0 0 25px #0ff inset;
+      }
+
+      50% {
+        box-shadow: 0 0 20px #0ff, 0 0 40px #0ff inset;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .terminal-line {
+      color: #0ff;
+      font-weight: bold;
+    }
+
+    .prompt {
+      color: #0f0;
+      margin-right: 10px;
+    }
+
+    .typewriter {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid #0ff;
+      width: 0;
+      animation: typing 4s steps(40, end) forwards, blink 0.7s step-end infinite;
+      text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+    }
+
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 42ch;
+      }
+    }
+
+    @keyframes blink {
+      50% {
+        border-color: transparent;
+      }
+    }
+
+    footer {
+      position: relative;
+      width: 100%;
+      text-align: center;
+      color: white;
+      background-color: #111;
+      padding: 10px;
+      font-size: 14px;
+      margin-top: auto;
+    }
+
+    footer a {
+      color: #ff6347;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .bookmark-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .bookmark-list li {
+      margin: 10px 0;
+      font-size: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .bookmark-list li:hover {
+      transform: scale(1.1);
+      color: #ff6347;
+    }
+
+  </style>
+</head>
+
+<body>
+  <video class="video-bg" autoplay muted loop>
+    <source src="https://videos.pexels.com/video-files/3163534/3163534-uhd_2560_1440_30fps.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="particles"></div>
+
+  <header>
+    <h1>My Bookmarks</h1>
+  </header>
+
+  <!-- ✅ Typing Terminal Prompt Box -->
+  <div class="typewriter-box">
+    <div class="terminal-line">
+      <span class="prompt"></span>
+      <span class="typewriter">Welcome to your Bookmark Manager....!</span>
+    </div>
+  </div>
+
+  <h2>Primary Bookmarks</h2>
+  <ul class="bookmark-list">
+    <li><a target="_blank" href="https://www.google.com">Open Google</a></li>
+    <li><a target="_blank" href="https://www.youtube.com">Open YouTube</a></li>
+    <li><a target="_blank" href="https://www.flipkart.com">Open Flipkart</a></li>
+    <li><a target="_blank" href="https://www.chatgpt.com">Open ChatGPT</a></li>
+    <li><a target="_blank" href="https://www.codewithharry.com/">Open Code with Harry</a></li>
+    <li><a target="_blank" href="https://www.stackoverflow.com">Open StackOverflow</a></li>
+    <li><a target="_blank" href="https://www.reddit.com">Open Reddit</a></li>
+  </ul>
+
+  <h2>Secondary Bookmarks</h2>
+  <ul class="bookmark-list">
+    <li><a target="_blank" href="https://www.instagram.com">Open Instagram</a></li>
+    <li><a target="_blank" href="https://www.amazon.com">Open Amazon</a></li>
+    <li><a target="_blank" href="https://www.myntra.com">Open Myntra</a></li>
+    <li><a target="_blank" href="https://www.jiohotstar.com">Open JioHotstar</a></li>
+    <li><a target="_blank" href="https://www.facebook.com">Open Facebook</a></li>
+    <li><a target="_blank" href="https://www.twitter.com">Open Twitter</a></li>
+    <li><a target="_blank" href="https://www.linkedin.com">Open LinkedIn</a></li>
+  </ul>
+
+  <footer>
+    <p>&copy; 2025 Bookmarks. All rights reserved. <a href="mailto:niranjanrishabh9@gmail.com">Contact Us</a></p>
+  </footer>
+
+</body>
+
+</html>
